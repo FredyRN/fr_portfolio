@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    env_file: .env
+    container_name: fr_portfolio
+    restart: unless-stopped
+    depends_on:
+      - database
+    ports:
+      - "8000:1323"
+    networks:
+      - backend
+  database:
+    image: postgres:14.5-alpine
+    container_name: fr_database
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+volumes:
+  data:
+networks:
+  backend:
