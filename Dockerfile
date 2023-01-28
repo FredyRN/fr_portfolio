@@ -15,7 +15,7 @@ RUN apk update \
 WORKDIR /go/src/fr_projects
 
 # Download dependencies
-COPY backend/go.mod ./
+COPY go.mod ./
 RUN go mod download && go mod verify
 
 # Copy the source from current folder to workdir inside the container
@@ -33,7 +33,7 @@ RUN apk update \
     && apk add --no-cache bash \
     && apk add --no-cache ca-certificates \
     && apk add --update gcc musl-dev \
-    && apk build-base \
+    && apk add build-base \
     && update-ca-certificates
 
 WORKDIR /root/
