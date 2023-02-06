@@ -4,7 +4,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
-    env_file: .env
+    env_file: src/.env
     container_name: fr_portfolio
     restart: unless-stopped
     depends_on:
@@ -18,7 +18,7 @@ services:
     container_name: fr_database
     restart: always
     env_file:
-      - .env
+      - src/.env
     ports:
       - "5432:5432"
     networks:

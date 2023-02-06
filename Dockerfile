@@ -20,7 +20,7 @@ RUN go mod download && go mod verify
 
 # Copy the source from current folder to workdir inside the container
 COPY . .
-COPY .env .
+COPY /src/.env .
 
 # Build project
 RUN CGO_ENABLED=0 GOARCH=amd64 GOOS=linux go build -a -installsuffix cgo -o fr_portfolio .
