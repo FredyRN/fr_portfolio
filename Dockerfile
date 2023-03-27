@@ -1,6 +1,6 @@
-FROM golang:1.19-alpine3.16 AS builder
+FROM golang:1.20-alpine3.16 AS builder
 
-LABEL maintainer = "Fredy Rodriguez - software@jfredy-rodriguez.com"
+LABEL maintainer = "Fredy Rodriguez - proyectos@fredyrn.com"
 
 # Install container dependencies
 RUN apk update \
@@ -16,6 +16,7 @@ WORKDIR /go/src/fr_projects
 
 # Download dependencies
 COPY go.mod ./
+COPY go.sum ./
 RUN go mod download && go mod verify
 
 # Copy the source from current folder to workdir inside the container
